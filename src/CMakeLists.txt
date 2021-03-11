@@ -510,13 +510,15 @@ endif()
 
 set_property(SOURCE ${CMAKE_CURRENT_BINARY_DIR}/fceux_git_info.cpp PROPERTY SKIP_AUTOGEN ON)
 
+set( QRESOURCE_FILES  ../resources.qrc  ../qss/QDarkStyle.qrc  )
+
 if (APPLE)
 
 set(MACOSX_BUNDLE_ICON_FILE fceux.icns)
 set(APP_ICON  ${CMAKE_SOURCE_DIR}/fceux.icns )
 set_source_files_properties( ${APP_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources" )
 
-add_executable(  ${APP_NAME}  MACOSX_BUNDLE ${APP_ICON} ${SOURCES} ../resources.qrc 
+add_executable(  ${APP_NAME}  MACOSX_BUNDLE ${APP_ICON} ${SOURCES} ${QRESOURCE_FILES}
 	${CMAKE_CURRENT_BINARY_DIR}/fceux_git_info.cpp)
 
 else()
@@ -525,7 +527,7 @@ else()
       add_executable(  ${APP_NAME}  ${SOURCES} 
    	   ${CMAKE_CURRENT_BINARY_DIR}/fceux_git_info.cpp)
    else()
-      add_executable(  ${APP_NAME}  ${SOURCES} ../resources.qrc 
+      add_executable(  ${APP_NAME}  ${SOURCES}  ${QRESOURCE_FILES}
    	   ${CMAKE_CURRENT_BINARY_DIR}/fceux_git_info.cpp)
    endif()
 endif()
